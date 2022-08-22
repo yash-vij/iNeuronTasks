@@ -36,6 +36,15 @@ def delete():
         mydb.commit()
         return jsonify(str('succesfully deleted'))
 
+@app.route('/fetch', methods = ['GET'])
+def fetch():
+    if request.method =='GET':
+        a = cursor.execute("select * from APItest.table1")
+        l = []
+        for i in cursor.fetchall():
+            l.append(i)
+        return jsonify(str(l))
+
+
 if __name__ == '__main__':
     app.run()
-
